@@ -1,4 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
+
+
 
 export const slice = createSlice({
   name: 'user',
@@ -19,3 +23,12 @@ export const slice = createSlice({
 });
 
 export const { logIn, logOut } = slice.actions;
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  // blackList:[],
+  //   whitelist:[],
+};
+
+export const persistSliceReducer = persistReducer(persistConfig, slice.reducer);
